@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/ironchef001/express-app-example/actions/workflows/node.js.yml/badge.svg)](https://github.com/ironchef001/express-app-example/actions/workflows/node.js.yml)
+
 # Express App Example
 
 This gives a basic idea of the dev and build tools and scripts I use for my
