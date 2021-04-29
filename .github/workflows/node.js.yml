@@ -47,4 +47,8 @@ jobs:
     - name: login into Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
+   
+    - name: debugging
+      run: |
+        echo login-ecr.registry: ${{ steps.login-ecr.outputs.registry }}
 
