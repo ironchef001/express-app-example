@@ -75,6 +75,9 @@ jobs:
       run: |
         echo outputs.image: ${{ steps.build-image.outputs.image }}
         
+    # prerequisite: on AWS management console
+    #   create a ECS Cluster
+    #   create a service under ECS Cluster
     - name: fill in the new image id in ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
