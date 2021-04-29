@@ -37,6 +37,9 @@ jobs:
         node-version: [15.x]
 
     steps:
+    # prerequisite: on AWS management console
+    #   create a new gitaccess user and 
+    #   store access_key_id and secret_access_key in the project setting.secrets
     - name: configure credential
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -52,3 +55,17 @@ jobs:
       run: |
         echo login-ecr.registry: ${{ steps.login-ecr.outputs.registry }}
 
+    # prerequisite: on AWS management console
+    #   create a private ECR repo 
+    - name: build, tag, and push image to ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: gitaction-express-app-example
+        IMAGE_TAG: ${{ github.sha }}
+        IMAGE_NAME: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+      run: |
+        docker build -t $IMAGE_NAME .
+        docker push $IMAGE_NAME
+        echo image_name: $IMAGE_NAME
+        
