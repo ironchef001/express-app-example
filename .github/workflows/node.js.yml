@@ -87,3 +87,11 @@ jobs:
       run: |
         echo describe task-definition ...
         cat ${{ steps.task-def.outputs.task-definition }}
+        
+    - name: deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: github-actions-svc
+        cluster: github-actions
+        wait-for-service-stability: true
