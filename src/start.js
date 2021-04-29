@@ -3,7 +3,7 @@ import 'express-async-errors'
 import logger from 'loglevel'
 import {getRoutes} from './routes'
 
-function startServer({port = 3000} = {}) {
+function startServer({port = 80} = {}) {
   const app = express()
 
   app.use('/api', getRoutes())
