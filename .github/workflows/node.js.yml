@@ -55,6 +55,9 @@ jobs:
       run: |
         echo login-ecr.registry: ${{ steps.login-ecr.outputs.registry }}
 
+    - name: checkout
+      uses: actions/checkout@v2
+    
     # prerequisite: on AWS management console
     #   create a private ECR repo 
     - name: build, tag, and push image to ECR
