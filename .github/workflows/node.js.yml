@@ -71,6 +71,10 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo image_name: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         
+    - name: describe image
+      run: |
+        echo outputs.image: ${{ steps.build-image.outputs.image }}
+        
     - name: fill in the new image id in ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
